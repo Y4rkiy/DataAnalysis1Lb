@@ -14,7 +14,7 @@ marks3 = []
 names = ""
 marks4 = []
 marks5 = 0
-name2 = ''
+name2 = ""
 marks6 = dict()
 teachers2020 = ""
 task2dictionary = {}
@@ -35,13 +35,13 @@ for i in range(0, len(data), 8):
     if data[i][1] == "3" or data[i][1] == "4":
         marks3.append(data[i + 4])
 
-    if data[i + 3] == " задовільно" and data[i + 6][3:5] == "08":
+    if data[i + 3] == "задовільно" and data[i + 6][3:5] == "08":
         names += data[i + 2] + " "
 
     if data[i][1] == "2" or data[i][1] == "3":
         marks4.append(int(data[i + 5]))
 
-    if data[i + 6][7:11] == "2019":
+    if data[i + 6][6:10] == "2019":
         mark = int(data[i + 5])
         if mark > marks5:
             marks5 = mark
@@ -51,8 +51,8 @@ for i in range(0, len(data), 8):
         marks6[data[i + 6][7:11]] = []
     marks6[data[i + 6][7:11]].append({data[i + 5]: data[i + 1] + " " + data[i + 2]})
 
-    if data[i + 6][7:11] == "2020":
-        teachers2020 += data[i + 2]
+    if data[i + 6][6:10] == "2020":
+        teachers2020 += data[i + 2] + " "
 
     task2dictionary[
         (data[i][0], data[i][1], data[i][2])] = {'Subject name': data[i + 1],
@@ -72,8 +72,8 @@ print(count3)
 
 print(count4)
 
-# count5 = Counter(marks3)
-# print(count5.most_common()[0][0])
+count5 = Counter(marks3)
+print(count5.most_common()[0][0])
 
 print(names)
 
@@ -92,6 +92,6 @@ for year in list(marks6.keys()):
         if strmark in discipline:
             print(discipline[strmark])
 
-print("\n" + teachers2020)
+print(teachers2020)
 
 print(task2dictionary)
